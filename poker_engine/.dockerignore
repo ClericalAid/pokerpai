@@ -1,0 +1,21 @@
+# Git
+.git
+.gitignore
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+**/*.egg-info/
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Tests (if you don't want to include them in the Docker image)
+tests/
+
+# Environments
+.venv
+venv/
