@@ -1,3 +1,15 @@
+import App from '../components/App.svelte'
+import { mount } from 'svelte'
+
+document.addEventListener('DOMContentLoaded', () => {
+  mount(
+    App, 
+    {
+      target: document.getElementById('app'),
+    },
+  )
+})
+
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb
 //
