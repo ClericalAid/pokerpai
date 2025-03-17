@@ -12,6 +12,6 @@ COPY poker_engine/ ./poker_engine/
 
 # Set environment variables for RabbitMQ connection
 ENV RABBITMQ_HOST=localhost
-ENV RABBITMQ_QUEUE=poker_queue
+ENV RABBITMQ_QUEUE=poker_engine_queue
 
 CMD ["python", "-m", "poker_engine.message_handler"]
