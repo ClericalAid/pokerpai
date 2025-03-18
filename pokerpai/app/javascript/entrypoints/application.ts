@@ -4,7 +4,7 @@ import "../stylesheets/app.css"
 
 document.addEventListener('DOMContentLoaded', () => {
   mount(
-    App, 
+    App,
     {
       target: document.getElementById('app'),
     },
