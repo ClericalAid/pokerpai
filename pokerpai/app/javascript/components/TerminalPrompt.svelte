@@ -7,12 +7,12 @@
   let currentBet = $state(500);
 </script>
 
-<div class="bg-gray-900 border border-gray-700 rounded p-2 font-mono w-full max-w-xs">
+<div class="bg-slate-950 border border-gray-700 rounded p-2 font-mono w-full max-w-xs">
   <!-- Main action buttons (larger) -->
   <div class="flex gap-2 justify-between mb-2">
     <button class="px-3 py-2 bg-gray-700 text-gray-200 rounded font-bold hover:bg-gray-600 transition-colors flex-1 text-center">Fold</button>
-    <button class="px-3 py-2 bg-blue-600 text-white rounded font-bold hover:bg-blue-500 transition-colors flex-1 text-center">Call ${minBet}</button>
-    <button class="px-3 py-2 bg-red-600 text-white rounded font-bold hover:bg-red-500 transition-colors flex-1 text-center">Raise</button>
+    <button class="px-3 py-2 bg-sky-500 text-white rounded font-bold hover:bg-blue-500 transition-colors flex-1 text-center">Call ${minBet}</button>
+    <button class="px-3 py-2 bg-rose-500 text-white rounded font-bold hover:bg-red-500 transition-colors flex-1 text-center">Raise</button>
   </div>
 
   <!-- Slider and bet amount -->

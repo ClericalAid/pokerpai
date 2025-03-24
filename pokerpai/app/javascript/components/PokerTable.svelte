@@ -14,6 +14,7 @@
         stack="$1,850"
         bet="$100"
         betPosition="bottom-right"
+        folded={false}
       />
     </div>
     <div class="relative">
@@ -22,6 +23,7 @@
         stack="$3,200"
         bet="$250"
         betPosition="bottom"
+        folded={false}
       />
     </div>
     <div class="relative">
@@ -30,6 +32,7 @@
         stack="$980"
         bet="$250"
         betPosition="bottom"
+        folded={false}
       />
     </div>
     <div class="relative">
@@ -38,6 +41,7 @@
         stack="$2,780"
         bet="$150"
         betPosition="bottom-left"
+        folded={false}
       />
     </div>
   </div>
@@ -52,6 +56,7 @@
           stack="$1,250"
           bet="$200"
           betPosition="right"
+          folded={false}
         />
       </div>
       <div class="relative">
@@ -60,6 +65,7 @@
           stack="$2,100"
           bet="$150"
           betPosition="right"
+          folded={false}
         />
       </div>
     </div>
@@ -78,6 +84,7 @@
           stack="$4,200"
           bet="$100"
           betPosition="left"
+          folded={false}
         />
       </div>
       <div class="relative">
@@ -86,6 +93,7 @@
           stack="$3,670"
           action="FOLD"
           betPosition="left"
+          folded={true}
         />
       </div>
     </div>
@@ -105,7 +113,7 @@
         bet="$100"
         betPosition="top"
         isHero={true}
-        cards={[{rank: 'Q', suit: '♥'}, {rank: 'Q', suit: '♠'}]}
+        cards={[{rank: 'Q', suit: 'h'}, {rank: 'Q', suit: 's'}]}
       />
     </div>
 

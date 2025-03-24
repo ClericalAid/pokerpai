@@ -1,11 +1,11 @@
 <script>
   import Card from './Card.svelte';
   let cards = [
-    { rank: 'A', suit: '♦' },
-    { rank: 'K', suit: '♠' },
-    { rank: '10', suit: '♥' },
-    { rank: '7', suit: '♣' },
-    { rank: '2', suit: '♠' },
+    { rank: 'A', suit: 'd' },
+    { rank: 'K', suit: 's' },
+    { rank: '10', suit: 'h' },
+    { rank: '7', suit: 'c' },
+    { rank: '2', suit: 's' },
   ];
 </script>
 
