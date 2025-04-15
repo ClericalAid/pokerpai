@@ -14,8 +14,8 @@ class Game:
             assert len(starting_stacks) == number_of_players
         blinds = (small_blind, big_blind)
 
-        self.state = pokerkit.NoLimitTexasHoldem.create_state(
-            (
+        self.game = pokerkit.NoLimitTexasHoldem(
+            automations=(
                 pokerkit.Automation.ANTE_POSTING,
                 pokerkit.Automation.BET_COLLECTION,
                 pokerkit.Automation.BLIND_OR_STRADDLE_POSTING,
@@ -27,13 +27,16 @@ class Game:
                 pokerkit.Automation.HOLE_DEALING,
                 pokerkit.Automation.HOLE_CARDS_SHOWING_OR_MUCKING,
             ),
-            False,
-            antes,
-            blinds,
-            min_bet,
-            starting_stacks,
-            number_of_players,
+            ante_trimming_status=False,
+            raw_antes=antes,
+            raw_blinds_or_straddles=blinds,
+            min_bet=min_bet,
             mode=pokerkit.Mode.CASH_GAME,
+        )
+
+        self.state = self.game(
+            raw_starting_stacks=starting_stacks,
+            player_count=number_of_players,
         )
 
     def fold(self):
