@@ -16,5 +16,16 @@ services:
       timeout: 10s
       retries: 5
 
+  mariadb:
+    container_name: mariadb
+    image: mariadb:11.8.1-noble-rc
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=pokerpai_dev
+      - MARIADB_USER=pokerpai_dev
+      - MARIADB_PASSWORD=pokerpai_dev
+      - MARIADB_DATABASE=pokerpai_dev
+
 volumes:
   rabbitmq_data:
