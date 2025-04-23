@@ -1,18 +1,18 @@
 import pokerkit
 
 class Game:
-    def __init__(self, starting_stacks: list[float] = None):
-        big_blind = 1.0
-        small_blind = big_blind / 2
-        min_bet = big_blind
-        default_starting_stack = 100 * big_blind
+    def __init__(self, starting_stacks: list[float] = None, big_blind=1.0, small_blind=0.5):
+        self.big_blind = big_blind
+        self.small_blind = small_blind
+        min_bet = self.big_blind
+        default_starting_stack = 100 * self.big_blind
         number_of_players = 6
         antes = {}
         if starting_stacks is None:
             starting_stacks = [default_starting_stack] * number_of_players
         else:
             assert len(starting_stacks) == number_of_players
-        blinds = (small_blind, big_blind)
+        blinds = (self.small_blind, self.big_blind)
 
         self.game = pokerkit.NoLimitTexasHoldem(
             automations=(

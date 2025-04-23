@@ -3,9 +3,10 @@ from poker_engine.game import Game
 class TestRelativePotRaises:
     def test_relative_pot_raise_when_actor_has_already_bet(self):
         big_blind = 100
+        small_blind = big_blind / 2
         bet_size = big_blind * 45
         starting_stack = big_blind * 100
-        game = Game(starting_stacks=[starting_stack] * 6)
+        game = Game(starting_stacks=[starting_stack] * 6, big_blind=big_blind, small_blind=small_blind)
         game.incremental_raise_bet(bet_size)
         game.fold()
         game.fold()
@@ -19,10 +20,8 @@ class TestRelativePotRaises:
         assert total_pot / call_amount == 3
 
     def test_relative_pot_raise_when_actor_has_not_yet_bet(self):
-        big_blind = 100
-        starting_stack = big_blind * 100
-        bet_size = big_blind * 23
-        game = Game(starting_stacks=[starting_stack] * 6)
+        game = Game()
+        bet_size = game.big_blind * 23
         game.incremental_raise_bet(bet_size)
         game.call()
         game.relative_pot_sized_raise(1.0)
