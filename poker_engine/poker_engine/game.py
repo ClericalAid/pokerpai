@@ -1,9 +1,9 @@
 import pokerkit
 
 class Game:
-    def __init__(self, starting_stacks: list[int] = None):
-        big_blind = 100
-        small_blind = int(big_blind / 2)
+    def __init__(self, starting_stacks: list[float] = None):
+        big_blind = 1.0
+        small_blind = big_blind / 2
         min_bet = big_blind
         default_starting_stack = 100 * big_blind
         number_of_players = 6
@@ -44,12 +44,15 @@ class Game:
 
     def relative_pot_sized_raise(self, percentage):
         raise_amount = self.calculate_relative_pot_sized_betting(percentage)
-        self.raise_bet(raise_amount)
+        self.incremental_raise_bet(raise_amount)
 
-    def raise_bet(self, amount):
+    def incremental_raise_bet(self, amount):
         player_seat = self.state.actor_index
         raise_value = self.state.bets[player_seat] + amount
         self.state.complete_bet_or_raise_to(raise_value)
+
+    def raise_bet(self, total_raise):
+        self.state.complete_bet_or_raise_to(total_raise)
 
     def call(self):
         self.state.check_or_call()
@@ -62,3 +65,7 @@ class Game:
         pot_sized_bet = self.state.total_pot_amount + calling_amount
 
         return pot_sized_bet * percentage + calling_amount
+
+    def actions(self):
+        self.hh = pokerkit.HandHistory.from_game_state(self.game, self.state)
+        return self.hh.actions

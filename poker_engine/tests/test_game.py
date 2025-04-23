@@ -6,7 +6,7 @@ class TestRelativePotRaises:
         bet_size = big_blind * 45
         starting_stack = big_blind * 100
         game = Game(starting_stacks=[starting_stack] * 6)
-        game.raise_bet(bet_size)
+        game.incremental_raise_bet(bet_size)
         game.fold()
         game.fold()
         game.fold()
@@ -23,7 +23,7 @@ class TestRelativePotRaises:
         starting_stack = big_blind * 100
         bet_size = big_blind * 23
         game = Game(starting_stacks=[starting_stack] * 6)
-        game.raise_bet(bet_size)
+        game.incremental_raise_bet(bet_size)
         game.call()
         game.relative_pot_sized_raise(1.0)
         game.fold()
