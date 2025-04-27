@@ -4,9 +4,12 @@ class GameManager:
     def __init__(self):
         self.game_dictionary = {}
 
-    def create_game(self, starting_stacks: list[int] = None):
+    def create_game(self, starting_stacks: list[int] = None, game_id: int = None, players: list[str] = []):
         game_id = len(self.game_dictionary)
-        self.game_dictionary[game_id] = Game(starting_stacks=starting_stacks)
+        self.game_dictionary[game_id] = {
+            "game": Game(starting_stacks=starting_stacks),
+            "players": players,
+        }
         return game_id
 
     def get_command(self, game_id: int, command: str):
