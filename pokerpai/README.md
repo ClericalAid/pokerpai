@@ -1,24 +1,7 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Running the server in local dev
+First, run `docker-compose up -d` in the root of the entire project. This will start the dependencies/services. Then:
+- rails s
+- bundle exec hutch
+- rake sneakers:run
+- bin/vite dev
