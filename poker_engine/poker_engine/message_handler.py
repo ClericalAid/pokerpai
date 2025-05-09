@@ -29,9 +29,6 @@ class MessageHandler:
                 routing_key='poker_engine.commands'
             )
 
-            # For responses
-            self.channel.queue_declare(queue='poker_engine.responses', durable=True)
-
             print(f"Connected to RabbitMQ and declared queue: {self.queue_name}")
         except pika.exceptions.AMQPConnectionError as e:
             print(f"Failed to connect to RabbitMQ: {e}")
@@ -42,12 +39,13 @@ class MessageHandler:
             if not self.channel:
                 self.connect()
 
+            # Send to the response queue that Hutch is consuming from
             self.channel.basic_publish(
-                exchange='',
-                routing_key=self.queue_name,
+                exchange='pokerpai',
+                routing_key='poker_engine.responses',
                 body=json.dumps(message)
             )
-            print(f"Sent message: {message}")
+            print(f"Sent response: {message}")
 
         except Exception as e:
             print(f"Failed to send message: {e}")
@@ -58,30 +56,27 @@ class MessageHandler:
             message = json.loads(body.decode())
             print(f"Received message: {message}")
 
-            if 'action' not in message:
-                print("Error: Message is missing 'action' field, printing message:")
-                print(message)
-                return
-
             action = message['action']
 
             if action == 'create_game':
                 starting_stacks = message.get('starting_stacks')
-                game_id = self.game_manager.create_game(starting_stacks=starting_stacks)
-                response = {'status': 'success', 'game_id': game_id}
+                game_data = self.game_manager.create_game(starting_stacks=starting_stacks)
+                response = {'command': action, 'game_data': game_data}
                 self.send_message(response)
 
             elif action == 'game_command':
                 game_id = message.get('game_id')
                 command = message.get('command')
 
-                if game_id is None or command is None:
-                    print("Error: Message is missing required fields")
-                    return
-
-                self.game_manager.get_command(game_id, command)
-                response = {'status': 'success', 'game_id': game_id, 'command': command}
+                game_data = self.game_manager.get_command(game_id, command)
+                response = {'command': command, "game_data": game_data}
                 self.send_message(response)
+
+            elif action == "loopback":
+                print("looping message back to sender")
+                self.send_message({
+                    "message": message["message"],
+                })
 
             else:
                 print(f"Unknown action: {action}")

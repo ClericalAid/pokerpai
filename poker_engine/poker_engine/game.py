@@ -74,8 +74,28 @@ class Game:
 
     def status(self):
         hand_actions = self.actions()
+        hole_cards = self.state.hole_cards
+        hole_cards = [[self.card_to_str(card) for card in player_cards] for player_cards in hole_cards]
+
+        board_cards = self.state.board_cards
+        board_cards = [self.card_to_str(board_card[0]) for board_card in board_cards]
+        # board_cards = [self.card_to_str(card) for card in board_cards]
+
+        players_statuses = self.state.statuses
+        game_ended = not self.state.status
+
         return {
-            "hand_actions": hand_actions,
-            "blinds": self.blinds,
             "player_count": self.number_of_players,
+            "blinds": self.blinds,
+            "starting_stacks": self.state.starting_stacks,
+            "current_stacks": self.state.stacks,
+            "current_bets": self.state.bets,
+            "total_pot_amount": self.state.total_pot_amount,
+            "actor_index": self.state.actor_index,
+            "hole_cards": hole_cards,
+            "board": board_cards,
+            "hand_actions": hand_actions,
         }
+
+    def card_to_str(self, card):
+        return f"{card.rank}{card.suit}"

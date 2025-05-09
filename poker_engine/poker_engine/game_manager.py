@@ -10,10 +10,13 @@ class GameManager:
             "game": Game(starting_stacks=starting_stacks),
             "players": players,
         }
-        return game_id
+        return {
+            "game_id": game_id,
+            "game_status": self.game_dictionary[game_id]["game"].status(),
+        }
 
     def get_command(self, game_id: int, command: str):
-        game = self.game_dictionary[game_id]
+        game = self.game_dictionary[game_id]["game"]
         if command == "fold":
             game.fold()
         elif command == "call":
@@ -26,3 +29,8 @@ class GameManager:
         elif command.startswith("relative_pot_raise"):
             raise_percentage = float(command.split(" ")[1])
             game.relative_pot_sized_raise(raise_percentage)
+
+        return {
+            "game_id": game_id,
+            "game_status": self.game_dictionary[game_id]["game"].status(),
+        }

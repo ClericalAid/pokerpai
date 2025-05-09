@@ -14,4 +14,4 @@ COPY poker_engine/ ./poker_engine/
 ENV RABBITMQ_HOST=localhost
 ENV RABBITMQ_QUEUE=poker_engine_queue
 
-CMD ["python", "-m", "poker_engine.message_handler"]
+CMD ["python", "-m", "poker_engine.main"]
