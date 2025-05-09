@@ -1,0 +1,4 @@
+web: bundle exec rails s
+vite: bin/vite dev
+hutch: bundle exec hutch
+worker: bundle exec rake sneakers:run
