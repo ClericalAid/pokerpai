@@ -1,11 +1,13 @@
 module PokerEngine
-  class ResponseConsumer
+  class Consumer
     include Hutch::Consumer
     consume "poker_engine.responses"
 
     def process(message)
-      payload = JSON.parse(message.body)
-      Rails.logger.info "Received from poker engine: #{payload.inspect}"
+      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      puts "@ Message received from poker engine: @"
+      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      puts "#{message}"
     end
   end
 end
