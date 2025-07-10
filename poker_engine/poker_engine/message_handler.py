@@ -64,6 +64,12 @@ class MessageHandler:
                 response = {'command': action, 'game_data': game_data}
                 self.send_message(response)
 
+            elif action == 'get_game':
+                game_id = message.get("game_id")
+                game_data = self.game_manager.get_game(game_id)
+                response = {'command': action, 'game_data': game_data}
+                self.send_message(response)
+
             elif action == 'game_command':
                 game_id = message.get('game_id')
                 command = message.get('command')

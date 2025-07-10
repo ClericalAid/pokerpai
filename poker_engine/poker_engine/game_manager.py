@@ -5,11 +5,17 @@ class GameManager:
         self.game_dictionary = {}
 
     def create_game(self, starting_stacks: list[int] = None, game_id: int = None, players: list[str] = []):
-        game_id = len(self.game_dictionary)
+        game_id = game_id or len(self.game_dictionary)
         self.game_dictionary[game_id] = {
             "game": Game(starting_stacks=starting_stacks),
             "players": players,
         }
+        return {
+            "game_id": game_id,
+            "game_status": self.game_dictionary[game_id]["game"].status(),
+        }
+
+    def get_game(self, game_id):
         return {
             "game_id": game_id,
             "game_status": self.game_dictionary[game_id]["game"].status(),
