@@ -5,15 +5,16 @@
     name,
     stack,
     bet,
-    isHero,
+    isHero = false,
     betPosition,
     action,
-    folded,
+    folded = false,
+    isActor = false,
     cards = [{rank: '?', suit: ''}, {rank: '?', suit: ''}],
   } = $props();
 </script>
 
-<div class="w-45 p-3 {isHero ? 'border-2 border-blue-500' : 'border border-gray-700'} {folded ? "brightness-25" : ""} bg-gray-900 rounded shadow-lg">
+<div class="w-45 p-3 {isHero ? 'border-2 border-blue-500' : isActor ? 'border-2 border-yellow-500' : 'border border-gray-700'} {folded ? "brightness-25" : ""} bg-gray-900 rounded shadow-lg">
   <div class="flex justify-between items-center">
     <!-- Left side: Player info -->
     <div class="flex-1 mr-2">

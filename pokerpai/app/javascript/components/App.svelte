@@ -2,9 +2,13 @@
   import PokerTable from './PokerTable.svelte';
   import { onMount, onDestroy } from 'svelte';
   import consumer from '../services/cable.js';
-  
+  import { getGameState, updateGameState } from '../stores/gameState.svelte.js';
+
   let subscription;
-  
+
+  // Get the reactive game state
+  const gameState = getGameState();
+
   onMount(() => {
     // Set up ActionCable connection
     subscription = consumer.subscriptions.create("MessageChannel", {
@@ -22,10 +26,15 @@
       },
       received(data) {
         console.log("Received message:", data);
+
+        // Check if this is a game state message
+        if (data.command === "get_game") {
+          updateGameState(data);
+        }
       }
     });
   });
-  
+
   onDestroy(() => {
     if (subscription) {
       // Clear interval if it exists
@@ -38,5 +47,5 @@
 </script>
 
 <div class="bg-gray-900 text-gray-200 min-h-screen flex justify-center items-center">
-  <PokerTable />
+  <PokerTable {gameState} />
 </div>
