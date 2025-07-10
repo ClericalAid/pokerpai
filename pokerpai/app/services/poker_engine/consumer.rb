@@ -8,6 +8,8 @@ module PokerEngine
       puts "@ Message received from poker engine: @"
       puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
       puts "#{message}"
+
+      ActionCable.server.broadcast("message_channel", message.body)
     end
   end
 end

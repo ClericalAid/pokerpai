@@ -11,4 +11,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  # Test endpoint for ActionCable
+  get "test_message" => "home#test_message"
+
+  # Mount ActionCable server
+  mount ActionCable.server => "/cable"
 end

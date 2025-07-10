@@ -71,7 +71,7 @@
     </div>
 
     <!-- Table center with pot and community cards -->
-    <div class="w-80 text-center">
+    <div class="w-72 text-center">
       <Pot amount="$1,250" />
       <CommunityCards />
     </div>

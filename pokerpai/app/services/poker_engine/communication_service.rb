@@ -14,6 +14,14 @@ module PokerEngine
         send_message(message:)
       end
 
+      def get_game(game_id:)
+        message = {
+          action: "get_game",
+          game_id:
+        }
+        send_message(message:)
+      end
+
       def send_command_to_game(command:, game_id:)
         message = {
           action: "game_command",
