@@ -186,7 +186,7 @@
       <!-- Terminal Prompt -->
       <TerminalPrompt
         minBet={gameState.blinds[1] || 0}
-        maxBet={Math.max(...gameState.current_stacks) || 0}
+        maxBet={gameState.current_stacks[gameState.actor_index] || 0}
       />
     </div>
   </div>

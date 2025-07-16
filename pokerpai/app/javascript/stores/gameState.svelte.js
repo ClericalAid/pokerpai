@@ -1,7 +1,3 @@
-// Game state management using Svelte 5 runes
-// This acts like a store but uses the new runes API
-
-// Create reactive game state
 let gameState = $state({
   game_id: null,
   player_count: 0,
@@ -16,7 +12,6 @@ let gameState = $state({
   hand_actions: []
 });
 
-// Helper function to parse card notation (e.g., "4h" -> {rank: "4", suit: "h"})
 export function parseCard(cardStr) {
   if (!cardStr || cardStr.length < 2) return {rank: '?', suit: ''};
 
@@ -29,17 +24,14 @@ export function parseCard(cardStr) {
   };
 }
 
-// Helper function to format currency
 export function formatCurrency(amount) {
   return `$${amount.toFixed(2)}`;
 }
 
-// Get the current game state (reactive)
 export function getGameState() {
   return gameState;
 }
 
-// Update game state from received data
 export function updateGameState(gameData) {
   if (gameData && gameData.game_data && gameData.game_data.game_status) {
     const status = gameData.game_data.game_status;
@@ -60,7 +52,6 @@ export function updateGameState(gameData) {
   }
 }
 
-// Helper function to get player data for a specific position
 export function getPlayerData(playerIndex) {
   if (playerIndex >= gameState.player_count) {
     return null;
@@ -81,7 +72,6 @@ export function getPlayerData(playerIndex) {
   };
 }
 
-// Individual update methods for granular state changes
 export function updatePlayerBet(playerIndex, amount) {
   if (playerIndex < gameState.current_bets.length) {
     gameState.current_bets[playerIndex] = amount;

@@ -4,7 +4,12 @@
     maxBet,
   } = $props()
 
-  let currentBet = $state(500);
+  let currentBet = $state(0);
+  let inputValue = $state('0');
+
+  $effect(() => {
+    inputValue = currentBet.toString();
+  });
 </script>
 
 <div class="bg-slate-950 border border-gray-700 rounded p-2 font-mono w-full max-w-xs">
@@ -17,8 +22,27 @@
 
   <!-- Slider and bet amount -->
   <div class="flex items-center gap-2 mb-2">
-    <input type="range" min={minBet} max={maxBet} bind:value={currentBet} class="flex-grow h-1 bg-gray-700 rounded-lg appearance-none">
-    <div class="bg-gray-900 px-2 py-1 rounded text-blue-400 border border-gray-700 text-center text-sm min-w-14">${currentBet}</div>
+    <input type="range" min={minBet} max={maxBet} step="0.01" bind:value={currentBet} class="flex-grow h-1 bg-gray-700 rounded-lg appearance-none">
+    <div class="bg-gray-900 px-2 py-1 rounded text-blue-400 border border-gray-700 text-center text-sm min-w-16 relative">
+      <span class="absolute left-1 top-1/2 transform -translate-y-1/2 text-xs">$</span>
+      <input
+        type="text"
+        bind:value={inputValue}
+        oninput={(e) => {
+          inputValue = e.target.value.replace(/[^0-9.]/g, '');
+        }}
+        onkeydown={(e) => {
+          if (e.key === 'Enter') {
+            const value = parseFloat(inputValue);
+            if (!isNaN(value)) {
+              currentBet = Math.max(minBet, Math.min(maxBet, value));
+            }
+            inputValue = currentBet.toString();
+          }
+        }}
+        class="bg-transparent text-blue-400 text-center text-sm w-full pl-3 pr-1 focus:outline-none focus:ring-1 focus:ring-blue-500 rounded"
+      >
+    </div>
   </div>
 
   <!-- Bet size shortcuts -->

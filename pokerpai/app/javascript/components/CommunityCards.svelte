@@ -4,7 +4,6 @@
 
   let { board = [] } = $props();
 
-  // Always show 5 cards, with blanks for remaining slots
   let cards = $derived([
     board[0] ? parseCard(board[0]) : { rank: '', suit: '' },
     board[1] ? parseCard(board[1]) : { rank: '', suit: '' },
