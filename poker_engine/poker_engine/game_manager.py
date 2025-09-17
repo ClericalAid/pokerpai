@@ -21,6 +21,15 @@ class GameManager:
             "game_status": self.game_dictionary[game_id]["game"].status(),
         }
 
+    def restart_game(self, game_id):
+        game = self.game_dictionary[game_id]["game"]
+        game.restart_game()
+
+        return {
+            "game_id": game_id,
+            "game_status": self.game_dictionary[game_id]["game"].status(),
+        }
+
     def get_command(self, game_id: int, command: str):
         game = self.game_dictionary[game_id]["game"]
         if command == "fold":

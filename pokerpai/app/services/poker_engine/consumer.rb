@@ -9,10 +9,11 @@ module PokerEngine
       puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
       puts "#{message}"
 
-      case message.body[:command]
-      when "get_game"
-        get_game(message:)
-      end
+      get_game(message:)
+      # case message.body[:command]
+      # when "get_game"
+      #   get_game(message:)
+      # end
     end
 
     def get_game(message:)

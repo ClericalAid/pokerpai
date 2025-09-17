@@ -1,11 +1,12 @@
 <script>
+  import {} from "../stores/cableStore.svelte.js";
   let {
     minBet,
     maxBet,
   } = $props()
 
-  let currentBet = $state(0);
-  let inputValue = $state('0');
+  let currentBet = $state(minBet);
+  let inputValue = $state(minBet.toString());
 
   $effect(() => {
     inputValue = currentBet.toString();

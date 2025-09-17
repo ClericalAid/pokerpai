@@ -37,9 +37,10 @@ export function initializeCableConnection() {
     received(data) {
       console.log("Received message:", data);
 
-      if (data.command === "get_game") {
-        updateGameState(data);
-      }
+      updateGameState(data);
+      //if (data.command === "get_game") {
+      //  updateGameState(data);
+      //}
     }
   });
 }

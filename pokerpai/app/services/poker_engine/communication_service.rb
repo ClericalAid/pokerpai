@@ -22,6 +22,14 @@ module PokerEngine
         send_message(message:)
       end
 
+      def restart_game(game_id:)
+        message = {
+          action: "restart_game",
+          game_id:
+        }
+        send_message(message:)
+      end
+
       def send_command_to_game(command:, game_id:)
         message = {
           action: "game_command",

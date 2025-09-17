@@ -14,6 +14,8 @@ class Game:
         else:
             self.number_of_players = len(starting_stacks)
 
+        self.starting_stacks = starting_stacks
+
         self.blinds = (self.small_blind, self.big_blind)
 
         self.game = pokerkit.NoLimitTexasHoldem(
@@ -37,7 +39,13 @@ class Game:
         )
 
         self.state = self.game(
-            raw_starting_stacks=starting_stacks,
+            raw_starting_stacks=self.starting_stacks,
+            player_count=self.number_of_players,
+        )
+
+    def restart_game(self):
+        self.state = self.game(
+            raw_starting_stacks=self.starting_stacks,
             player_count=self.number_of_players,
         )
 
@@ -92,6 +100,7 @@ class Game:
             "current_bets": self.state.bets,
             "total_pot_amount": self.state.total_pot_amount,
             "actor_index": self.state.actor_index,
+            "checking_or_calling_amount": self.state.checking_or_calling_amount,
             "hole_cards": hole_cards,
             "board": board_cards,
             "hand_actions": hand_actions,

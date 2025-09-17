@@ -185,7 +185,7 @@
     <div class="flex-1 flex justify-end">
       <!-- Terminal Prompt -->
       <TerminalPrompt
-        minBet={gameState.blinds[1] || 0}
+        minBet={gameState.checking_or_calling_amount}
         maxBet={gameState.current_stacks[gameState.actor_index] || 0}
       />
     </div>

@@ -7,6 +7,7 @@ let gameState = $state({
   current_bets: [],
   total_pot_amount: 0,
   actor_index: 0,
+  checking_or_calling_amount: 0,
   hole_cards: [],
   board: [],
   hand_actions: []
@@ -44,6 +45,7 @@ export function updateGameState(gameData) {
     gameState.current_bets = status.current_bets;
     gameState.total_pot_amount = status.total_pot_amount;
     gameState.actor_index = status.actor_index;
+    gameState.checking_or_calling_amount = status.checking_or_calling_amount;
     gameState.hole_cards = status.hole_cards;
     gameState.board = status.board;
     gameState.hand_actions = status.hand_actions;
